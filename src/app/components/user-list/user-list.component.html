@@ -1,0 +1,54 @@
+<div class="user-list">
+  <h1 class="user-list__title">Список пользователей</h1>
+  <div class="user-list__container">
+    <div class="user-list__search-bar">
+      <input
+        type="text"
+        placeholder="Фильтровать по имени или email"
+        [(ngModel)]="searchQuery"
+        (input)="filterUsers()"
+        class="user-list__search-input"
+      />
+    </div>
+    <button class="user-list__add-button" (click)="navigateToUserForm()">Создать пользователя</button>
+  </div>
+  <table class="user-list__table">
+    <thead>
+    <tr class="user-list__table-row">
+      <th class="user-list__table-header">№</th>
+      <th class="user-list__table-header">ФИО</th>
+      <th class="user-list__table-header">Телефон</th>
+      <th class="user-list__table-header">Почта</th>
+      <th class="user-list__table-header">Редактировать</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (user of visibleUsers; track user.id; let i = $index) {
+        <tr class="user-list__table-row" (click)="navigateToUserDetails(user.id)">
+          <td class="user-list__table-cell">{{ i + 1 }}</td>
+          <td class="user-list__table-cell">{{ user.name }}</td>
+          <td class="user-list__table-cell">{{ user.phone }}</td>
+          <td class="user-list__table-cell">{{ user.email }}</td>
+          <td class="user-list__table-cell" (click)="navigateToUserForm(user.id)">
+            <mat-icon class="user-list__table-cell-mat-icon">edit</mat-icon>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <div class="pagination">
+    <button
+      class="pagination__button"
+      [disabled]="currentPage === 1"
+      (click)="changePage(-1)">
+      Предыдущая
+    </button>
+    <span>Страница {{ currentPage }} из {{ totalPages }}</span>
+    <button
+      class="pagination__button"
+      [disabled]="currentPage === totalPages"
+      (click)="changePage(1)">
+      Следующая
+    </button>
+  </div>
+</div>

@@ -1,0 +1,160 @@
+<div class="user-form">
+  <button class="back-button" (click)="backToUserList()">
+    <svg fill="#000000" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.676 26.676">
+      <path
+        d="M26.105,21.891c-0.229,0-0.439-0.131-0.529-0.346l0,0c-0.066-0.156-1.716-3.857-7.885-4.59 c-1.285-0.156-2.824-0.236-4.693-0.25v4.613c0,0.213-0.115,0.406-0.304,0.508c-0.188,0.098-0.413,0.084-0.588-0.033L0.254,13.815 C0.094,13.708,0,13.528,0,13.339c0-0.191,0.094-0.365,0.254-0.477l11.857-7.979c0.175-0.121,0.398-0.129,0.588-0.029 c0.19,0.102,0.303,0.295,0.303,0.502v4.293c2.578,0.336,13.674,2.33,13.674,11.674c0,0.271-0.191,0.508-0.459,0.562 C26.18,21.891,26.141,21.891,26.105,21.891z"/>
+    </svg>
+    Назад
+  </button>
+
+  <h1 class="user-form__title">{{ isEditMode ? 'Редактировать пользователя' : 'Создать пользователя' }}</h1>
+
+  <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+    <div class="user-form__grid-container">
+
+      <div class="user-form__group">
+        <label for="name">ФИО</label>
+        <input id="name" formControlName="name" class="user-form__input"/>
+        <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="user-form__error">
+          Поле обязательно
+        </div>
+      </div>
+
+      <div class="user-form__group">
+        <label for="username">Логин</label>
+        <input id="username" formControlName="username" class="user-form__input"/>
+        <div *ngIf="userForm.get('username')?.invalid && userForm.get('username')?.touched" class="user-form__error">
+          Поле обязательно
+        </div>
+      </div>
+
+      <div class="user-form__group">
+        <label for="email">Почта</label>
+        <input id="email" formControlName="email" class="user-form__input"/>
+        <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="user-form__error">
+          Укажите корректный email
+        </div>
+      </div>
+
+      <div class="user-form__group">
+        <label for="phone">Телефон</label>
+        <input id="phone" formControlName="phone" class="user-form__input"/>
+        <div *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched" class="user-form__error">
+          Поле обязательно
+        </div>
+      </div>
+
+      <div class="user-form__group">
+        <label for="website">Веб-сайт</label>
+        <input id="website" formControlName="website" class="user-form__input"/>
+        <div *ngIf="userForm.get('website')?.invalid && userForm.get('website')?.touched" class="user-form__error">
+          Поле обязательно
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Address Section -->
+    <div class="user-form__nested-group" formGroupName="address">
+      <h3>Адрес</h3>
+      <div class="user-form__grid-container">
+        <div class="user-form__group">
+          <label for="street">Улица</label>
+          <input id="street" formControlName="street" class="user-form__input"/>
+          <div *ngIf="userForm.get('address.street')?.invalid && userForm.get('address.street')?.touched"
+               class="user-form__error">
+            Поле обязательно
+          </div>
+        </div>
+
+        <div class="user-form__group">
+          <label for="suite">Квартира</label>
+          <input id="suite" formControlName="suite" class="user-form__input"/>
+          <div *ngIf="userForm.get('address.suite')?.invalid && userForm.get('address.suite')?.touched"
+               class="user-form__error">
+            Поле обязательно
+          </div>
+        </div>
+
+        <div class="user-form__group">
+          <label for="city">Город</label>
+          <input id="city" formControlName="city" class="user-form__input"/>
+          <div *ngIf="userForm.get('address.city')?.invalid && userForm.get('address.city')?.touched"
+               class="user-form__error">
+            Поле обязательно
+          </div>
+        </div>
+
+        <div class="user-form__group">
+          <label for="zipcode">Почтовый индекс</label>
+          <input id="zipcode" formControlName="zipcode" class="user-form__input"/>
+          <div *ngIf="userForm.get('address.zipcode')?.invalid && userForm.get('address.zipcode')?.touched"
+               class="user-form__error">
+            Поле обязательно
+          </div>
+        </div>
+
+        <!-- Geo -->
+        <div formGroupName="geo">
+          <div class="user-form__group">
+            <label for="lat">Широта</label>
+            <input id="lat" formControlName="lat" class="user-form__input"/>
+            <div *ngIf="userForm.get('address.geo.lat')?.invalid && userForm.get('address.geo.lat')?.touched"
+                 class="user-form__error">
+              Поле обязательно
+            </div>
+          </div>
+
+          <div class="user-form__group">
+            <label for="lng">Долгота</label>
+            <input id="lng" formControlName="lng" class="user-form__input"/>
+            <div *ngIf="userForm.get('address.geo.lng')?.invalid && userForm.get('address.geo.lng')?.touched"
+                 class="user-form__error">
+              Поле обязательно
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Company Section -->
+    <div class="user-form__nested-group" formGroupName="company">
+      <h3>Компания</h3>
+      <div class="user-form__grid-container">
+        <div class="user-form__group">
+          <label for="companyName">Название</label>
+          <input id="companyName" formControlName="name" class="user-form__input"/>
+          <div *ngIf="userForm.get('company.name')?.invalid && userForm.get('company.name')?.touched"
+               class="user-form__error">
+            Поле обязательно
+          </div>
+        </div>
+
+        <div class="user-form__group">
+          <label for="catchPhrase">Слоган</label>
+          <input id="catchPhrase" formControlName="catchPhrase" class="user-form__input"/>
+          <div *ngIf="userForm.get('company.catchPhrase')?.invalid && userForm.get('company.catchPhrase')?.touched"
+               class="user-form__error">
+            Поле обязательно
+          </div>
+        </div>
+
+        <div class="user-form__group">
+          <label for="bs">Бизнес</label>
+          <input id="bs" formControlName="bs" class="user-form__input"/>
+          <div *ngIf="userForm.get('company.bs')?.invalid && userForm.get('company.bs')?.touched"
+               class="user-form__error">
+            Поле обязательно
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <button type="submit" class="user-form__button" [disabled]="userForm.invalid">
+      {{ isEditMode ? 'Сохранить изменения' : 'Создать пользователя' }}
+    </button>
+  </form>
+</div>

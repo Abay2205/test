@@ -1,0 +1,101 @@
+.user-list {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 25px;
+  min-height: 100vh;
+  background-color: white;
+  border-radius: 15px;
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__search-bar {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+
+  &__search-input {
+    width: 230px;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 8px;
+    color: #1D1D42;
+    border: 1px solid #1D1D42;
+  }
+
+  &__add-button {
+    background-color: #1d1d42;
+    color: #fff;
+    border: none;
+    padding: 11px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    height: 38px;
+
+    &:hover {
+      background-color: #082f57;
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+
+    &-header {
+      text-align: left;
+      padding: 12px;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
+    }
+
+    &-row {
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f6f6f8;
+      }
+    }
+
+    &-cell {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+
+      &-mat-icon:hover {
+        background-color: #d0d0d3;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+
+  &__button {
+    background-color: #1d1d42;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}
